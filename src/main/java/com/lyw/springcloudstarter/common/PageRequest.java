@@ -1,7 +1,7 @@
 package com.lyw.springcloudstarter.common;
 
 
-import com.lyw.springbootstarter.constant.CommonConstant;
+import com.lyw.springcloudstarter.constant.CommonConstant;
 import lombok.Data;
 
 /**

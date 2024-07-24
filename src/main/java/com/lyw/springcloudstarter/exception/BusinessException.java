@@ -1,6 +1,8 @@
 package com.lyw.springcloudstarter.exception;
 import com.lyw.springcloudstarter.common.ErrorCode;
+import lombok.Getter;
 
+@Getter
 public class BusinessException extends RuntimeException {
 
     /**

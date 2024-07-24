@@ -38,7 +38,7 @@ public class SentinelConfig {
             throw new RuntimeException(e);
         }
     };
-    private Converter<String, List<DegradeRule>> degradeRuleListParser = source -> {
+    private final Converter<String, List<DegradeRule>> degradeRuleListParser = source -> {
         try {
             return objectMapper.readValue(source, new TypeReference<List<DegradeRule>>() {
             });
@@ -46,7 +46,7 @@ public class SentinelConfig {
             throw new RuntimeException(e);
         }
     };
-    private Converter<String, List<SystemRule>> systemRuleListParser = source -> {
+    private final Converter<String, List<SystemRule>> systemRuleListParser = source -> {
         try {
             return objectMapper.readValue(source, new TypeReference<List<SystemRule>>() {
             });
