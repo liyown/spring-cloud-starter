@@ -1,6 +1,7 @@
 package com.lyw.springcloudstarter.openfeign.config;
 
 
+import com.lyw.springcloudstarter.openfeign.client.fallback.ItermsServiceFallbackFactory;
 import com.lyw.springcloudstarter.utils.UserContext;
 import feign.Logger;
 import feign.RequestInterceptor;
@@ -24,6 +25,7 @@ public class FeignLogConfig {
         return Logger.Level.FULL;
     }
 
+
     @Bean
     public RequestInterceptor requestInterceptor() {
         return requestTemplate -> {
@@ -39,6 +41,11 @@ public class FeignLogConfig {
             requestTemplate.header(USER_INFO, user.toString());
             log.info("Feign调用 userId:{}", user);
         };
+    }
+
+    @Bean
+    public ItermsServiceFallbackFactory itermServiceFallbackFactory() {
+        return new ItermsServiceFallbackFactory();
     }
 
 }

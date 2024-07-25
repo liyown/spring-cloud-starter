@@ -17,8 +17,8 @@ import java.util.Map;
  * @create: 2024-07-01 15:58
  * @Description:
  */
-@FeignClient(value = "hm-items-service", fallbackFactory = ItermsServiceFallbackFactory.class, path = "items")
-public interface ItermService {
+@FeignClient(name = "null", url = "localhost:8081", fallbackFactory = ItermsServiceFallbackFactory.class, path = "items")
+public interface RemoteItermService {
 
     @GetMapping()
     List<ItemDTO> queryItermByIDs(@RequestParam("ids") Collection<Long> ids);

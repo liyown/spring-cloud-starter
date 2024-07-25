@@ -10,6 +10,7 @@ import java.net.InetAddress;
  * @author <a href="https://github.com/liyupi">程序员鱼皮</a>
  * @from <a href="https://yupi.icu">编程导航知识星球</a>
  */
+@SuppressWarnings("unused")
 public class NetUtils {
 
     /**

@@ -16,6 +16,7 @@ import com.lyw.springcloudstarter.domain.vo.LoginUserVO;
 import com.lyw.springcloudstarter.domain.vo.UserVO;
 import com.lyw.springcloudstarter.exception.BusinessException;
 import com.lyw.springcloudstarter.exception.ThrowUtils;
+import com.lyw.springcloudstarter.openfeign.client.RemoteItermService;
 import com.lyw.springcloudstarter.service.UserService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,6 +43,15 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private RemoteItermService remoteItermService;
+
+
+    @GetMapping("test")
+    public String test(){
+        return remoteItermService.queryItermByIDs(List.of(546872L)).toString();
+    }
 
 
     // region 登录相关

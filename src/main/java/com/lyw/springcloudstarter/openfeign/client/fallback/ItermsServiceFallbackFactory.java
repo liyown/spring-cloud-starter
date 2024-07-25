@@ -1,7 +1,7 @@
 package com.lyw.springcloudstarter.openfeign.client.fallback;
 
 import com.lyw.springcloudstarter.openfeign.client.ItemDTO;
-import com.lyw.springcloudstarter.openfeign.client.ItermService;
+import com.lyw.springcloudstarter.openfeign.client.RemoteItermService;
 import org.springframework.cloud.openfeign.FallbackFactory;
 
 import java.util.Collection;
@@ -14,12 +14,12 @@ import java.util.Map;
  * @create: 2024-07-11 13:39
  * @Description: fallback factory example
  */
-public class ItermsServiceFallbackFactory implements FallbackFactory<ItermService> {
+public class ItermsServiceFallbackFactory implements FallbackFactory<RemoteItermService> {
 
     @Override
-    public ItermService create(Throwable throwable) {
+    public RemoteItermService create(Throwable throwable) {
         System.out.println("fallbackFactory");
-        return new ItermService() {
+        return new RemoteItermService() {
             @Override
             public List<ItemDTO> queryItermByIDs(Collection<Long> ids) {
                 System.out.println("fallback");
