@@ -5,6 +5,9 @@ server:
 spring:
   application:
     name: spring-cloud-starter
+
+  profiles:
+    active: dev
   #  nacos 是否导入外部配置文件
   config:
     import:
@@ -16,6 +19,7 @@ spring:
     username: ${my.db.username}
     password: ${my.db.password}
     driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
 
   cloud:
     #  nacos配置
@@ -82,7 +86,6 @@ spring:
 feign:
   sentinel:
     enabled: true
-
 
 # MybatisPlus配置
 mybatis-plus:

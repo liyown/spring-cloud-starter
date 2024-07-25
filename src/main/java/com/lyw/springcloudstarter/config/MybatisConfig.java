@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.ddl.IDdl;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,6 +20,9 @@ import java.util.function.Consumer;
  */
 @Configuration
 public class MybatisConfig {
+
+    @Resource
+    private DataSource dataSource;
 
 
     @Bean
@@ -36,12 +40,16 @@ public class MybatisConfig {
 
             @Override
             public void runScript(Consumer<DataSource> consumer) {
-                consumer.accept(null);
+                consumer.accept(dataSource);
             }
 
             @Override
             public List<String> getSqlFiles() {
-                return List.of("classpath:sql/user.sql");
+                // 获取classpath 的路径
+                String path = this.getClass().getResource("/").getPath();
+                // 获取sql文件
+                String sqlPath = path + "sql/user.sql";
+                return List.of(sqlPath);
             }
         };
     }

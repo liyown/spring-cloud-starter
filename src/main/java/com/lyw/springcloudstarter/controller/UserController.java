@@ -17,6 +17,7 @@ import com.lyw.springcloudstarter.domain.vo.UserVO;
 import com.lyw.springcloudstarter.exception.BusinessException;
 import com.lyw.springcloudstarter.exception.ThrowUtils;
 import com.lyw.springcloudstarter.openfeign.client.RemoteItermService;
+import com.lyw.springcloudstarter.openfeign.config.RemoteItermServices;
 import com.lyw.springcloudstarter.service.UserService;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletRequest;
@@ -47,10 +48,18 @@ public class UserController {
     @Resource
     private RemoteItermService remoteItermService;
 
+    @Resource
+    private RemoteItermServices remoteItermServices;
+
 
     @GetMapping("test")
     public String test(){
         return remoteItermService.queryItermByIDs(List.of(546872L)).toString();
+    }
+
+    @GetMapping("test2")
+    public String test2(){
+        return remoteItermServices.queryItermByIDs(List.of(546872L)).toString();
     }
 
 
@@ -59,8 +68,6 @@ public class UserController {
     /**
      * 用户注册
      *
-     * @param userRegisterRequest
-     * @return
      */
     @PostMapping("/register")
     public BaseResponse<Long> userRegister(@RequestBody UserRegisterRequest userRegisterRequest) {
