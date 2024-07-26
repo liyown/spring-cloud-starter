@@ -2,6 +2,7 @@ package com.lyw.springcloudstarter.exception;
 
 
 
+import com.alibaba.csp.sentinel.slots.block.flow.FlowException;
 import com.lyw.springcloudstarter.common.BaseResponse;
 import com.lyw.springcloudstarter.common.ErrorCode;
 import com.lyw.springcloudstarter.common.ResultUtils;
@@ -18,6 +19,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 @Slf4j
 public class GlobalExceptionHandler {
+
+    @ExceptionHandler(FlowException.class)
+    public BaseResponse<?> flowExceptionHandler(FlowException e) {
+        log.error("FlowException", e);
+        return ResultUtils.error(ErrorCode.FLOW_ERROR, "限流");
+    }
 
     @ExceptionHandler(BusinessException.class)
     public BaseResponse<?> businessExceptionHandler(BusinessException e) {

@@ -59,9 +59,9 @@ public class SentinelConfig {
     //    @PostConstruct
     private void listenRules() throws Exception {
         ClassLoader classLoader = getClass().getClassLoader();
-        String flowRulePath = URLDecoder.decode(classLoader.getResource("FlowRule.json").getFile(), StandardCharsets.UTF_8);
-        String degradeRulePath = URLDecoder.decode(classLoader.getResource("DegradeRule.json").getFile(), StandardCharsets.UTF_8);
-        String systemRulePath = URLDecoder.decode(classLoader.getResource("SystemRule.json").getFile(), StandardCharsets.UTF_8);
+        String flowRulePath = URLDecoder.decode(classLoader.getResource("sentinel/FlowRule.json").getFile(), StandardCharsets.UTF_8);
+        String degradeRulePath = URLDecoder.decode(classLoader.getResource("sentinel/DegradeRule.json").getFile(), StandardCharsets.UTF_8);
+        String systemRulePath = URLDecoder.decode(classLoader.getResource("sentinel/SystemRule.json").getFile(), StandardCharsets.UTF_8);
 
         // Data source for FlowRule
         FileRefreshableDataSource<List<FlowRule>> flowRuleDataSource = new FileRefreshableDataSource<>(flowRulePath, flowRuleListParser);

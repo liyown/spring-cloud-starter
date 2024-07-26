@@ -1,6 +1,8 @@
 package com.lyw.springcloudstarter.controller;
 
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.nacos.common.utils.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
@@ -53,8 +55,9 @@ public class UserController {
 
 
     @GetMapping("test")
-    public String test(){
-        return remoteItermService.queryItermByIDs(List.of(546872L)).toString();
+    @SentinelResource(value = "test", fallback = "")
+    public String test() throws BlockException {
+        return "test";
     }
 
     @GetMapping("test2")
